@@ -30,6 +30,9 @@ Metrics/ParameterLists:
   Max: 6
 
 # RSpec
+RSpec/AnyInstance:
+  Enabled: false
+
 RSpec/ExampleLength:
   Max: 22
 

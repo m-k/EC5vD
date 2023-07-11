@@ -11,6 +11,9 @@ gem 'rails', '~> 7.0.6'
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'
 
+# Use postgresql as the database for Active Record
+gem 'pg', '~> 1.1'
+
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3', '~> 1.4'
 
@@ -45,6 +48,8 @@ gem 'bootsnap', require: false
 # gem "sassc-rails"
 
 group :development, :test do
+  gem 'rspec-rails'
+
   # Code quality
   gem 'bundle-audit', require: false
   gem 'fasterer', require: false

@@ -1,0 +1,113 @@
+version: 2.1
+orbs:
+  node: circleci/node@5.0.0
+executors:
+  primary:
+    working_directory: ~/pizza_app
+    docker:
+      - image: cimg/ruby:3.2.2
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+      - image: cimg/postgres:14.0
+        auth:
+          username: mydockerhub-user
+          password: $DOCKERHUB_PASSWORD
+        environment:
+          POSTGRES_USER: root
+          POSTGRES_DB: pizza_app_test
+commands:
+  build_app:
+    steps:
+      - attach_workspace:
+          at: ~/pizza_app
+      - restore_cache:
+          keys:
+            - &bundle_cache_full pizza_app-{{ checksum "Gemfile.lock" }}
+            - pizza_app-
+      - run:
+          name: Force Bundler Version
+          command: gem install bundler:2.4.3
+      - run:
+          name: Install dependencies
+          command: bundle check || bundle install --jobs 4 --retry 3
+      - save_cache:
+          key: *bundle_cache_full
+          paths:
+            - vendor/bundle
+  setup_database:
+    steps:
+      - run:
+          name: Postgres Client Install
+          command: sudo apt install -y postgresql-client || true
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:test:load
+
+jobs:
+  checkout:
+    executor: primary
+    steps:
+      - checkout
+      - persist_to_workspace:
+          root: ~/pizza_app
+          paths:
+            - .
+  build:
+    executor: primary
+    steps:
+      - build_app
+  Rspec:
+    executor: primary
+    parallelism: 4
+    steps:
+      - build_app
+      - setup_database
+      - run: mkdir ~/rspec
+      - run:
+          name: run specs
+          command: bundle exec rspec
+          when: always
+      - store_artifacts:
+          path: coverage
+      - store_test_results:
+          path: ~/rspec
+  linters:
+    executor: primary
+    steps:
+      - build_app
+      - run:
+          name: rubocop
+          command: bundle exec rubocop
+      - run:
+          name: fasterer
+          command: bundle exec fasterer
+      - run:
+          name: rails_best_practices
+          command: bundle exec rails_best_practices
+      - run:
+          name: bundle-audit
+          command: bundle exec bundle-audit check --update --ignore CVE-2015-9284
+
+workflows:
+  build:
+    jobs:
+      - checkout
+      - build:
+          requires:
+            - checkout
+      - Rspec:
+          requires:
+            - build
+      - linters:
+          requires:
+            - build

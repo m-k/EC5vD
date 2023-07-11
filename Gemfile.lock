@@ -82,6 +82,7 @@ GEM
     concurrent-ruby (1.2.2)
     crass (1.0.6)
     date (3.3.3)
+    diff-lcs (1.5.0)
     erubi (1.12.0)
     erubis (2.7.0)
     fasterer (0.10.1)
@@ -95,7 +96,6 @@ GEM
       actionpack (>= 6.0.0)
       railties (>= 6.0.0)
     json (2.6.3)
-    kwalify (0.7.2)
     lefthook (1.4.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
@@ -126,6 +126,7 @@ GEM
     parser (3.2.2.3)
       ast (~> 2.4.1)
       racc
+    pg (1.5.3)
     puma (5.6.6)
       nio4r (~> 2.0)
     racc (1.7.1)
@@ -171,13 +172,26 @@ GEM
     rainbow (3.1.1)
     rake (13.0.6)
     redis (4.8.1)
-    reek (6.1.4)
-      kwalify (~> 0.7.0)
-      parser (~> 3.2.0)
-      rainbow (>= 2.0, < 4.0)
     regexp_parser (2.8.1)
     require_all (3.0.0)
     rexml (3.2.5)
+    rspec-core (3.12.2)
+      rspec-support (~> 3.12.0)
+    rspec-expectations (3.12.3)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-mocks (3.12.5)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.12.0)
+    rspec-rails (6.0.3)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.12.1)
     rubocop (1.52.1)
       json (~> 2.3)
       parallel (~> 1.10)
@@ -244,11 +258,12 @@ DEPENDENCIES
   fasterer
   importmap-rails
   lefthook
+  pg (~> 1.1)
   puma (~> 5.0)
   rails (~> 7.0.6)
   rails_best_practices
   redis (~> 4.0)
-  reek
+  rspec-rails
   rubocop
   rubocop-rails
   rubocop-rspec
