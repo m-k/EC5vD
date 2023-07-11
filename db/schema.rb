@@ -10,8 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_07_09_132621) do
+ActiveRecord::Schema[7.0].define(version: 2023_07_11_210122) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "orders", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.integer "state", default: 0
+    t.jsonb "items"
+    t.jsonb "promotion_codes"
+    t.string "discount_code"
+    t.datetime "created_at", null: false
+  end
 
 end
