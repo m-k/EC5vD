@@ -2,7 +2,7 @@
 
 class Order < ApplicationRecord
   extend PizzaConfig
-  
+
   enum :state, %i[open completed]
 
   validates :items, order_items: true
