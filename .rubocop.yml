@@ -1,0 +1,80 @@
+require:
+  - 'rubocop-rspec'
+  - 'rubocop-rails'
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'vendor/**/*'
+    - 'tmp/**/*'
+  TargetRubyVersion: 3.2.1
+
+# Layout
+Layout/LineLength:
+  Max: 120
+
+# Lint
+Lint/AmbiguousBlockAssociation:
+  Enabled: false
+
+Lint/MissingSuper:
+  Enabled: false
+
+Metrics/MethodLength:
+  Exclude:
+    - lib/macro/**/*
+
+Metrics/ParameterLists:
+  Max: 6
+
+# RSpec
+RSpec/ExampleLength:
+  Max: 22
+
+RSpec/InstanceVariable:
+  Exclude:
+    - spec/controllers/**/*
+
+RSpec/MessageChain:
+  Enabled: false
+
+RSpec/MessageSpies:
+  Enabled: false
+
+RSpec/MultipleExpectations:
+  Enabled: false
+
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+
+RSpec/NestedGroups:
+  Max: 5
+
+RSpec/NoExpectationExample:
+  Enabled: false
+
+RSpec/RepeatedExampleGroupBody:
+  Enabled: false
+
+RSpec/StubbedMock:
+  Enabled: false
+
+RSpec/VerifiedDoubleReference:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/OpenStructUse:
+  Enabled: false
+
+Style/ParallelAssignment:
+  Enabled: false
+
+Style/RedundantFetchBlock:
+  Enabled: false
+
+Style/StringConcatenation:
+  Enabled: false

@@ -1,0 +1,13 @@
+pre-commit:
+  parallel: true
+  commands:
+    bundle-audit:
+      run: bundle exec bundle-audit check --update --ignore CVE-2015-9284
+    fasterer:
+      glob: "**/*.rb"
+      run: bundle exec fasterer {staged_files}
+    rubocop:
+      glob: "{*.{ru,rb,rake,gemspec},Gemfile,Rakefile}"
+      run: bundle exec rubocop --parallel --format=emacs --force-exclusion --display-cop-names {staged_files}
+    rails_best_practices:
+      run: bundle exec rails_best_practices
