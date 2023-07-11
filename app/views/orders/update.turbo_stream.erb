@@ -1,0 +1,3 @@
+<% if @order.completed? %>
+  <% Turbo::StreamsChannel.broadcast_remove_to 'orders_list', target: @order %>
+<% end %>

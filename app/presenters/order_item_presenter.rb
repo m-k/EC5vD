@@ -30,4 +30,8 @@ class OrderItemPresenter < ApplicationPresenter
   def removed_ingredients
     object.remove.join(DELIMITER)
   end
+
+  def to_partial_path
+    'orders/order_item'
+  end
 end

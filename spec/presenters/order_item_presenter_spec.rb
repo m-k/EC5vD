@@ -108,4 +108,8 @@ RSpec.describe OrderItemPresenter do
       it { expect(presenter.show_ingredients?).to be(false) }
     end
   end
+
+  describe '#to_partial_path' do
+    it { expect(presenter.to_partial_path).to eq('orders/order_item') }
+  end
 end

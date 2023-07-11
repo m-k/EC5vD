@@ -1,0 +1,58 @@
+.responsive-two-column-grid {
+    display: block;
+}
+
+.responsive-two-column-grid > * {
+    padding: 1rem;
+}
+
+@media (min-width:768px) {
+    .responsive-two-column-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+dl.order-summary {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+dl.order-summary dd {
+    display: inline;
+    margin: 0;
+}
+
+dl.order-summary dd:after{
+    display: block;
+    content: '';
+}
+
+dl.order-summary dt{
+    display: inline-block;
+}
+
+dl.order-summary dt.total-price {
+    padding: 20px 0 10px;
+}
+
+ul.order-items {
+    margin: 0;
+    padding: 5px 0 0 15px;
+}
+
+ul.order-items ul {
+    padding-left: 15px  ;
+}
+
+.orders-empty {
+    display: none;
+    font-size: 24px;
+    padding: 50px;
+    text-align: center;
+
+}
+
+.orders-empty:first-child {
+    display: block;
+}

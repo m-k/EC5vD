@@ -1,4 +1,12 @@
 en:
+  activerecord:
+    attributes:
+      order:
+        id: ID
+        created_at: Created
+        promotion_codes: Promotion Codes
+        discount_code: Discount Code
+
   time:
     formats:
       default: "%B %d, %Y %H:%M"
@@ -8,3 +16,17 @@ en:
         format: "%n%u"
         separator: "."
         unit: "€"
+  orders:
+    index:
+      title: Orders
+      empty_list: All orders completed
+    order:
+      total_price: Total Price
+      complete_btn: Complete
+      items: 'Items:'
+    order_item:
+      add: 'Add:'
+      remove: 'Remove:'
+    update:
+      alert: Order has not been updated
+      notice: Order successfully updated
