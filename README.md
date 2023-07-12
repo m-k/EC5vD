@@ -1,6 +1,6 @@
 # How to run the app
 
-###Using docker:
+#### Using docker:
 
 ```
 docker compose up # or docker-compose up
@@ -8,7 +8,7 @@ docker compose up # or docker-compose up
 
 Visit [http://localhost:3000](http://localhost:3000)
 
-###Ruby way:
+#### Ruby way:
 
 Install ruby 3.2.2, postgres and redis
 
