@@ -1,3 +1,24 @@
+# How to run the app
+
+####Using docker:
+
+```
+docker compose up # or docker-compose up
+```
+
+Visit [http://localhost:3000](http://localhost:3000)
+
+####Ruby way:
+
+Install ruby 3.2.2, postgres and redis
+
+```bash
+bin/setup
+rails s
+```
+
+Visit [http://localhost:3000](http://localhost:3000)
+
 # Evermood Rails Coding Challenge
 
 We are excited that you are interested in performing our coding challenge. The purpose of this assignment is to see how you approach problems and evaluate the quality of your code.
