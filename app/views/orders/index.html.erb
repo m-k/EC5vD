@@ -1,0 +1,8 @@
+<h1><%= t('.title') %></h1>
+
+<%= turbo_frame_tag 'orders_list' do %>
+  <%= render @orders %>
+  <div class="orders-empty"><%= t('.empty_list') %></div>
+<% end %>
+
+<%= turbo_stream_from 'orders_list' %>

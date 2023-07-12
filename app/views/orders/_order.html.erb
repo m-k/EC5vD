@@ -1,0 +1,33 @@
+<div id="<%= dom_id(order.object) %>">
+  <hr>
+  <div class="responsive-two-column-grid">
+    <div>
+      <dl class="order-summary">
+        <dt><%= Order.human_attribute_name(:id) %>:</dt>
+        <dd><%= order.id %></dd>
+        <dt><%= Order.human_attribute_name(:created_at) %>:</dt>
+        <dd><%= order.created_at %></dd>
+        <dt><%= Order.human_attribute_name(:promotion_codes) %>:</dt>
+        <dd><%= order.promotion_codes %></dd>
+        <dt><%= Order.human_attribute_name(:discount_code) %>:</dt>
+        <dd><%= order.discount_code %></dd>
+        <dt class="total-price"><%= t('.total_price') %>:</dt>
+        <dd><%= order.total_price %></dd>
+      </dl>
+
+      <%= button_to t('.complete_btn'),
+                    order_path(order.object),
+                    method: :patch,
+                    params: { order: { state: :completed } },
+                    data: { 'turbo-frame' => 'orders_index' },
+                    class: 'btn btn-primary'
+      %>
+    </div>
+    <div>
+      <%= t('.items') %>
+      <ul class="order-items  ">
+        <%= render order.items %>
+      </ul>
+    </div>
+  </div>
+</div>

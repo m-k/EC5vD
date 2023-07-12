@@ -1,0 +1,13 @@
+<li>
+  <%= order_item.name %> (<%= order_item.size %>)
+  <% if order_item.show_ingredients? %>
+    <ul>
+      <% if order_item.show_add_section? %>
+        <li><%= t('.add') %> <%= order_item.added_ingredients %></li>
+      <% end %>
+      <% if order_item.show_remove_section? %>
+        <li><%= t('.remove') %> <%= order_item.removed_ingredients %></li>
+      <% end %>
+    </ul>
+  <% end %>
+</li>

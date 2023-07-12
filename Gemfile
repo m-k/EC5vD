@@ -49,6 +49,7 @@ gem 'bootsnap', require: false
 
 group :development, :test do
   gem 'rspec-rails'
+  gem 'shoulda-matchers'
 
   # Code quality
   gem 'bundle-audit', require: false
